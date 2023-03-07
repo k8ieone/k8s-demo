@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: spring-example-backend
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_DB=jspring
+  db:
+    image: postgres
+    restart: unless-stopped
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - spring-postgres
+    environment:
+      - POSTGRES_DB=example
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+volumes:
+  db-data:
+secrets:
+  db-password:
+    file: password.txt
