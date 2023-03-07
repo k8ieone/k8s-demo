@@ -2,3 +2,6 @@
 	path = spring-example-backend
 	url = git@github.com:a13xie/spring-example-backend.git
 	branch = main
+[submodule "docker-java-springboot-postgres-api"]
+	path = docker-java-springboot-postgres-api
+	url = git@github.com:a13xie/docker-java-springboot-postgres-api.git
