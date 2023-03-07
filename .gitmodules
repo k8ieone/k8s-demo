@@ -1,0 +1,4 @@
+[submodule "spring-example-backend"]
+	path = spring-example-backend
+	url = git@github.com:a13xie/spring-example-backend.git
+	branch = main
