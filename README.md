@@ -36,7 +36,7 @@ The Postgres manifest includes a Deployment, PVC, Service and a Secret.
 
 The app's manifest contains a Deployment and a Service.
  - You might want to change the service type to `ClusterIP` and use [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) to publish the service.
- - Depending on the expected traffic, the ammount of [replicas](https://github.com/a13xie/k8s-demo/blob/main/manifests/api.yaml#L8) can be increased.
+ - Depending on the expected traffic, the amount of [replicas](https://github.com/a13xie/k8s-demo/blob/main/manifests/api.yaml#L8) can be increased.
 
 Finally there is an optional manifest for monitoring Postgres.
  - Postgres Exporter connects to the Postgres database and exposes metrics using the Prometheus metric format.
