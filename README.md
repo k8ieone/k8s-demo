@@ -6,9 +6,7 @@ This is a simple demo stack consisting of a Postgres database and a simple appli
 
 ### Deploying with `docker-compose`
 
-A [`docker-compose`](https://docs.docker.com/compose/) file is [provided](https://github.com/a13xie/docker-java-springboot-postgres-api/blob/main/docker-compose.yml) for easy deployment.
-
-This is easily the fastest way to quickly test the application.
+A [`docker-compose`](https://docs.docker.com/compose/) file is [provided](https://github.com/a13xie/docker-java-springboot-postgres-api/blob/main/docker-compose.yml) for quickly testing the application.
 
 Be warned, the compose file does not provide persistance for the database. This can easily be added by adding a [volume](https://docs.docker.com/storage/volumes/#use-a-volume-with-docker-compose) and mounting it to `/var/lib/postgresql/data`.
 
