@@ -1,12 +1,10 @@
 # Kubernetes Demo Stack
 
-## Stack description
-
 This is a simple demo stack consisting of a Postgres database and a simple application written using Java Spring.
 
-# Deployment
+## Deployment
 
-## Deploying with `docker-compose`
+### Deploying with `docker-compose`
 
 A [`docker-compose`](https://docs.docker.com/compose/) file is [provided](https://github.com/a13xie/docker-java-springboot-postgres-api/blob/main/docker-compose.yml) for easy deployment.
 
@@ -17,7 +15,7 @@ Be warned, the compose file does not provide persistance for the database. This 
 1. Download the `docker-compose.yml` file: `wget https://raw.githubusercontent.com/a13xie/docker-java-springboot-postgres-api/main/docker-compose.yml`
 1. Start the project: `docker compose up -d`
 
-## Deploying to production with Kubernetes
+### Deploying to production with Kubernetes
 
 The preferred method for deploying this project for production use is using Kubernetes.
 
