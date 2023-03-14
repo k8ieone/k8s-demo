@@ -29,14 +29,14 @@ Once you have cloned this repo, deployment is done using the `kubectl` utility.
 kubectl apply -f manifests
 ```
 
-The Postgres manifest includes the Deployment, PVC, Service and a Secret.
+The Postgres manifest includes a Deployment, PVC, Service and a Secret.
  - Depending on your environment, you might need to change the PVC storage class.
  - Do not change the service type, the database should not be accessible outside of the cluster.
  - Do not change the Postgres password because the demo app has the password hard-coded.
 
 The app's manifest contains a Deployment and a Service.
  - You might want to change the service type to `ClusterIP` and use Ingress to publish the service.
- - Depending on the expected traffic, the ammount of replicas can be increased
+ - Depending on the expected traffic, the ammount of replicas can be increased.
 
 Finally there is an optional manifest for monitoring Postgres.
  - Postgres Exporter connects to the Postgres database and exposes metrics using the Prometheus metric format.
