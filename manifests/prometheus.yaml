@@ -1,0 +1,83 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: prometheus-claim
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prometheus
+  name: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: docker.io/prom/prometheus:latest
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 250m
+              memory: 2G
+          volumeMounts:
+            - mountPath: /prometheus
+              name: data
+            - mountPath: /etc/prometheus
+              name: config
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: prometheus-claim
+        - name: config
+          configMap:
+            name: prometheus-config
+            defaultMode: 420
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  ports:
+    - port: 9090
+      protocol: TCP
+  selector:
+    app: prometheus
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval:     15s
+      evaluation_interval: 15s
+      external_labels:
+          monitor: 'db-monitor'
+    scrape_configs:
+      - job_name: 'prometheus'
+        static_configs:
+          - targets: ['localhost:9090']
+      - job_name: 'postgres'
+        static_configs:
+          - targets: ['postgres-exporter:9187']
