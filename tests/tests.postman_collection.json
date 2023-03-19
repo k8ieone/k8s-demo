@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a2ec006a-03bc-4e0e-b741-19ed594f357d",
+		"_postman_id": "823768bb-3a38-4bda-a5eb-83b344a59c42",
 		"name": "TODOs API test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -55,11 +55,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/todos",
+					"raw": "{{host}}/api/v1/todos",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -104,11 +103,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/todos",
+					"raw": "{{host}}/api/v1/todos",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -157,11 +155,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/todos/{{todo_id}}",
+					"raw": "{{host}}/api/v1/todos/{{todo_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -220,11 +217,10 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/api/v1/todos/{{todo_id}}",
+					"raw": "{{host}}/api/v1/todos/{{todo_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -256,7 +252,7 @@
 							"});",
 							"",
 							"pm.test(\"Check that the TODO is deleted\", function () {",
-							"    pm.sendRequest(\"http://localhost:8080/api/v1/todos/1\", function (err, response) {",
+							"    pm.sendRequest(pm.collectionVariables.get(\"host\") + \"/api/v1/todos/1\", function (err, response) {",
 							"        pm.expect(response.status).to.eq('Not Found');",
 							"    });",
 							"});"
@@ -269,11 +265,10 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/todos/{{todo_id}}",
+					"raw": "{{host}}/api/v1/todos/{{todo_id}}",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"v1",
@@ -285,10 +280,34 @@
 			"response": []
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "todo_id",
 			"value": ""
+		},
+		{
+			"key": "host",
+			"value": "http://192.168.49.2:32502"
 		}
 	]
 }
