@@ -29,7 +29,7 @@ spec:
             - name: DATA_SOURCE_USER
               value: docker
             - name: DATA_SOURCE_URI
-              value: postgres
+              value: postgres?sslmode=disable
 
 ---
 apiVersion: v1
